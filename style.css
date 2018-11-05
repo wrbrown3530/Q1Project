@@ -32,3 +32,11 @@
 .btn {
   display: inline-block;
 }
+
+.dropdown-toggle{
+background-color: #FFD700;
+}
+
+.btn{
+background-color:#FFD700;
+}

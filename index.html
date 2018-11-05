@@ -17,6 +17,20 @@
 </head>
 
 <body class="backgroundColor">
+  <div class="dropdown">
+    <button class="btn  ml-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Enter Email!
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a>
+        <form id="myForm" class="myForm">
+          <label class="ml-2">Email</label>
+          <input class="email mr-2" id="email" type="email" name="email" placeholder="Email" required>
+          <button type="submit" class="btn mr-2 emailSubmit">Sign in</button>
+        </form>
+      </a>
+    </div>
+  </div>
 
   <div class="row text-center">
     <div class="col">
@@ -31,16 +45,13 @@
       </div>
       <div class="col-sm">
         <input type="text" class="searchInput border border-warning ml-5">
-        <button type="button" class="btn btn-secondary searchButton ml-2">Search</button>
-        <p id="output" class="output">pls</p>
+        <button type="button" class="btn btn-secondary searchButton  ml-2">Search</button>
+        <p id="output" class="output"></p>
       </div>
       <div class="col-sm">
-
       </div>
     </div>
   </div>
-
-  >
 
   <!--link to JS-->
   <script src="app.js"></script>
