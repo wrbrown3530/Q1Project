@@ -40,3 +40,9 @@ background-color: #FFD700;
 .btn{
 background-color:#FFD700;
 }
+
+.searchOutput{
+  color:#FFD700;
+  position: absolute; bottom: 0px;
+  position: absolute; right: 0px;
+}
