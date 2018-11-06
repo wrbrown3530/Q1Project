@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const button = document.getElementsByClassName("searchButton")
   const userText = document.getElementsByClassName("searchInput")
   const output = document.getElementById("output")
-  const searchOutput =document.getElementById("searchOutput")
+  const searchOutput = document.getElementById("searchOutput")
 
   button[0].addEventListener("click", function() {
 
@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
         axios.get(response.data.results[0].homeworld)
           .then(function(response) {
             output.innerHTML = userText[0].value + " is from the planet " + response.data.name
+            //console.log(userText[0].value.toUpperCase())
             localStorage.setItem("history", userText[0].value)
             let searchHistory = localStorage.getItem("history")
-             searchOutput.innerHTML = searchHistory + " is the last character that you searched for"
-            })
+            searchOutput.innerHTML = searchHistory + " is the last character that you searched for"
+          })
 
           .catch(function(error) {
 
@@ -41,12 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
   emailSubmit[0].addEventListener("submit", function(event) {
     localStorage.setItem("email", emailField[0].value)
 
-
-
-
   })
-
-
 
 
 })
