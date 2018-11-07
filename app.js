@@ -6,23 +6,32 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchOutput = document.getElementById("searchOutput")
 
   button[0].addEventListener("click", function() {
-
+    //initial axios call takes what the user types and sends to the api//
     axios.get(`https://swapi.co/api/people/?search=${userText[0].value}`)
-
+  //second axios call, returns the character's home planet//
       .then(function(response) {
         axios.get(response.data.results[0].homeworld)
           .then(function(response) {
-            output.innerHTML = userText[0].value + " is from the planet " + response.data.name
-            //console.log(userText[0].value.toUpperCase())
+           //function that capitalizes the first letter in each word the user enters//
+            function firstLetterToCaps(str) {
+              return str.toLowerCase().split(' ').map(function(word) {
+                return word.replace(word[0], word[0].toUpperCase());
+              }).join(' ');
+            }
+            //search output displayed to the page//
+            output.innerHTML = firstLetterToCaps(userText[0].value) + " is from the planet " + response.data.name
+            //local storage for last item searched by the user//
             localStorage.setItem("history", userText[0].value)
             let searchHistory = localStorage.getItem("history")
-            searchOutput.innerHTML = searchHistory + " is the last character that you searched for"
+            //prints the content of the last character searched to the browser//
+            searchOutput.innerHTML = firstLetterToCaps(searchHistory) + " is the last character that you searched for"
           })
 
           .catch(function(error) {
 
           })
       })
+      // If axios call returns nothing this code is run as an error message//
       .catch(function(error) {
         let num = Math.floor(Math.random() * 4)
         if (num === 0) {
@@ -36,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       })
   })
-
+//local storage for email//
   const emailSubmit = document.getElementsByClassName("myForm")
   const emailField = document.getElementsByClassName("email")
   emailSubmit[0].addEventListener("submit", function(event) {
