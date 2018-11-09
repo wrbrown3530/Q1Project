@@ -41,8 +41,16 @@ background-color: #FFD700;
 background-color:#FFD700;
 }
 
-.searchOutput{
+.searched{
   color:#FFD700;
   position: absolute; bottom: 0px;
-  position: absolute; right: 0px;
+  position: absolute; right: 20px;
+  font-size:20px;
+
+}
+
+.searchHistory{
+color:#FFD700;
+position: absolute; right: 0px;
+position: absolute; bottom: 130px;
 }

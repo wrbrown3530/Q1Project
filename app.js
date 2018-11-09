@@ -5,26 +5,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const output = document.getElementById("output")
   const searchOutput = document.getElementById("searchOutput")
 
+
   button[0].addEventListener("click", function() {
     //initial axios call takes what the user types and sends to the api//
     axios.get(`https://swapi.co/api/people/?search=${userText[0].value}`)
-  //second axios call, returns the character's home planet//
+      //second axios call, returns the character's home planet//
       .then(function(response) {
         axios.get(response.data.results[0].homeworld)
           .then(function(response) {
-           //function that capitalizes the first letter in each word the user enters//
-            function firstLetterToCaps(str) {
-              return str.toLowerCase().split(' ').map(function(word) {
-                return word.replace(word[0], word[0].toUpperCase());
-              }).join(' ');
-            }
             //search output displayed to the page//
             output.innerHTML = firstLetterToCaps(userText[0].value) + " is from the planet " + response.data.name
-            //local storage for last item searched by the user//
-            localStorage.setItem("history", userText[0].value)
-            let searchHistory = localStorage.getItem("history")
-            //prints the content of the last character searched to the browser//
-            searchOutput.innerHTML = firstLetterToCaps(searchHistory) + " is the last character that you searched for"
+
           })
 
           .catch(function(error) {
@@ -45,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       })
   })
-//local storage for email//
+  //local storage for email//
   const emailSubmit = document.getElementsByClassName("myForm")
   const emailField = document.getElementsByClassName("email")
   emailSubmit[0].addEventListener("submit", function(event) {
@@ -53,5 +44,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   })
 
+
+  //add a list from local storage displaying search history//
+  button[0].addEventListener("click", function() {
+    localStorage.setItem("searchList", userText[0].value)
+    const listOfSearches = localStorage.getItem("searchList")
+
+    var newItem = document.createElement("LI")
+    var textNode = document.createTextNode(listOfSearches)
+    newItem.appendChild(textNode);
+    var list = document.getElementById("searched")
+    list.appendChild(newItem, list.childNodes[0])
+    if (list.childNodes[4])
+    list.removeChild(list.childNodes[0])
+
+
+})
+
+
+//Capitalizes the first letter in the returned string//
+  function firstLetterToCaps(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+      return word.replace(word[0], word[0].toUpperCase());
+    }).join(' ');
+  }
 
 })
